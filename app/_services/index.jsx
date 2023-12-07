@@ -78,5 +78,6 @@ export const PublishCourse = async (id) => {
   }  
   `
   const result = await request(MASTER_URL, mutationQuery);
+  console.log("PublishCourse result:", result);
     return result;
 }

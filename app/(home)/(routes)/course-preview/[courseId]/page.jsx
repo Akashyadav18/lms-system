@@ -11,6 +11,7 @@ import { useUser } from '@clerk/nextjs';
 const CoursePreview = ({ params }) => {
 
   const [courseDetail, setCourseDetail] = useState([]);
+  const [userCourse, setUserCourse] = useState([]);
 
   const {user} = useUser();
 
@@ -22,6 +23,7 @@ const CoursePreview = ({ params }) => {
     getCourseById(params.courseId, user?.primaryEmailAddress?.emailAddress).then(res => {
       console.log(res);
       setCourseDetail(res.courseList);
+      setUserCourse(res?.userEnrollCourses[0]);
     })
   }
 
@@ -34,7 +36,7 @@ const CoursePreview = ({ params }) => {
         </div>
         <div className='mx-5'>
           <OptionSection/>
-          <EnrollmentSection courseDetail={courseDetail}/>
+          <EnrollmentSection courseDetail={courseDetail} userCourse={userCourse}/>
         </div>
       </div>
     </div>
