@@ -17,6 +17,9 @@ const EnrollmentSection = ({ courseDetail, userCourse }) => {
                     await PublishCourse(resp?.createUserEnrollCourse?.id)
                     .then(result => {
                         console.log("result :", result);
+                        if(result) {
+                            router.push('/view-course/'+courseDetail.id);
+                        }
                     })
                 }
             })
@@ -31,7 +34,7 @@ const EnrollmentSection = ({ courseDetail, userCourse }) => {
                 <div className='mt-5 border rounded-lg p-2 text-center'>
                     <h2 className='text-gray-500'>Continue to Build project, Access Source code and Track your process for free!</h2>
                     <button className='p-2 w-full bg-purple-500 text-white rounded-lg text-[14px] mt-2 hover:bg-purple-700'
-                    >Continue</button>
+                    onClick={() => router.push('/view-course/'+courseDetail.id)} >Continue</button>
                 </div>
                 : null
             }
