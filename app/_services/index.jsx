@@ -47,7 +47,11 @@ export const getCourseById = async (id, userEmail) => {
       }) {
       courseId
       userEmail
-      completedChapter
+      completedChapter {
+        ... on CompletedChapter {
+          chapterId
+        }
+      }
     }
   }
   `
