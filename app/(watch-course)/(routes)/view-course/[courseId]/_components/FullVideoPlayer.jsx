@@ -1,18 +1,28 @@
+import { CompletedChapterContext } from '@/app/_context/CompletedChapterContext';
 import { CheckCircle2 } from 'lucide-react';
-import React from 'react'
+import React, { useContext } from 'react'
 
-const FullVideoPlayer = ({activeChapter}) => {
-    console.log(activeChapter);
+const FullVideoPlayer = ({ activeChapter }) => {
+  console.log(activeChapter);
+  const { completedChapter, setCompletedChapter } = useContext(CompletedChapterContext);
+
+  const isChapterCompleted = (chapterId) => {
+    return completedChapter.find(item => item.chapterId == chapterId);
+  }
+
   return (
     <div className='border rounded-lg p-5'>
       <video width="1000" height="230" key={activeChapter?.video?.url} controls controlsList='nodownload'>
-        <source src={activeChapter?.video?.url} type='video/mp4'/>
+        <source src={activeChapter?.video?.url} type='video/mp4' />
       </video>
       <div className='p-5 border rounded-lg mt-5 flex justify-between items-center'>
         <h2 className='text-[20px] font-medium'>{activeChapter.name}</h2>
-        <button className='bg-purple-500 text-white p-2 px-5 rounded-lg flex gap-2 hover:bg-purple-800'>
-            <CheckCircle2/> <h2>Mark as Completed</h2>
-        </button>
+        {!isChapterCompleted(activeChapter.chapterNumber) ?
+          <button className='bg-purple-500 text-white p-2 px-5 rounded-lg flex gap-2 hover:bg-purple-800'>
+            <CheckCircle2 /> <h2>Mark as Completed</h2>
+          </button>
+          :
+          null}
       </div>
     </div>
   )

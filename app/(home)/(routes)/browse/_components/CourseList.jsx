@@ -7,7 +7,7 @@ const CourseList = ({ courses }) => {
     return (
         <div className='mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
             {courses.map((course, index) => (
-                <Link href={'/course-preview/'+course.id}>
+                <Link key={index} href={'/course-preview/'+course.id}>
                 <div key={course.id} className='border p-2 rounded-lg cursor-pointer shadow hover:border-purple-400'>
                     <Image src={course.banner.url} alt={course.name} width={1000} height={600} className='rounded-lg' />
                     <div className='flex flex-col gap-1 lg:gap-2 text-center'>

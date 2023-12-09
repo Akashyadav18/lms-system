@@ -29,6 +29,7 @@ export const getCourseById = async (id, userEmail) => {
         ... on Chapter {
           id
           name
+          chapterNumber
           youtubeUrl
           video {
             url

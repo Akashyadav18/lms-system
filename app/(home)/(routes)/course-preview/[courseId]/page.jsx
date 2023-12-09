@@ -13,7 +13,7 @@ const CoursePreview = ({ params }) => {
   const [courseDetail, setCourseDetail] = useState([]);
   const [userCourse, setUserCourse] = useState([]);
 
-  const {user} = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     params.courseId ? getCourse(params.courseId) : null;
@@ -21,7 +21,6 @@ const CoursePreview = ({ params }) => {
 
   const getCourse = () => {
     getCourseById(params.courseId, user?.primaryEmailAddress?.emailAddress).then(res => {
-      console.log(res);
       setCourseDetail(res.courseList);
       setUserCourse(res?.userEnrollCourses[0]);
     })
@@ -29,16 +28,17 @@ const CoursePreview = ({ params }) => {
 
   return courseDetail?.name && (
     <div className=''>
-      <div className='grid grid-cols-1 md:grid-cols-3'>
-        <div className='col-span-2'>
-          {courseDetail?.chapter[0] ? <VideoPlayer videoUrl={courseDetail.chapter[0].video.url}/> : null}
-          <CourseDetails courseDetail={courseDetail} />
+      
+        <div className='grid grid-cols-1 md:grid-cols-3'>
+          <div className='col-span-2'>
+            {courseDetail?.chapter[0] ? <VideoPlayer videoUrl={courseDetail.chapter[0].video.url} /> : null}
+            <CourseDetails courseDetail={courseDetail} />
+          </div>
+          <div className='mx-5'>
+            <OptionSection />
+            <EnrollmentSection courseDetail={courseDetail} userCourse={userCourse} />
+          </div>
         </div>
-        <div className='mx-5'>
-          <OptionSection/>
-          <EnrollmentSection courseDetail={courseDetail} userCourse={userCourse}/>
-        </div>
-      </div>
     </div>
   )
 }
