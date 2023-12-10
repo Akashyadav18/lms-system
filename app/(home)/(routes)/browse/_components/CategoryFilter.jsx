@@ -15,7 +15,7 @@ const CategoryFilter = ({selectedCategory}) => {
     {
       id: 2,
       name: "React Js",
-      value: 'react'
+      value: 'reactjs'
     },
     {
       id: 3,

@@ -86,3 +86,26 @@ export const PublishCourse = async (id) => {
   console.log("PublishCourse result:", result);
     return result;
 }
+
+export const GetUserCourseList = async (userEmail) => {
+  const query = gql `
+  query UserCourseList {
+    userEnrollCourses(where: {userEmail: "`+userEmail+`"}) {
+      courseList {
+        banner {
+          url
+        }
+        description
+        id
+        name
+        free
+        sourceCode
+        tags
+        totalChapters
+      }
+    }
+  }
+  `
+  const result = await request(MASTER_URL, query);
+    return result;
+}

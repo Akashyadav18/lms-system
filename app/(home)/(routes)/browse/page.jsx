@@ -33,11 +33,11 @@ const Browse = () => {
       return;
     }
     const filteredList = coursesOrg.filter(course => {
-      if (!course.tag) {
+      if (!course.tags) {
         console.error('course.tag is undefined for', course);
         return false;
       }
-      return course.tag.includes(category);
+      return course.tags.includes(category);
     })
     setCourses(filteredList);
   }

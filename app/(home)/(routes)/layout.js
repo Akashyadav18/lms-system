@@ -5,8 +5,8 @@ import Header from '../_components/Header'
 const HomeLayout = ({ children }) => {
   return (
     <div className=''>
-      <div className='h-full w-64 flex-col fixed inset-y-0 z-50'>
-        <SideBarNav />
+      <div className='h-full w-64 flex flex-col fixed inset-y-0 z-50'>
+        <SideBarNav className="" />
       </div>
       <div>
         <Header />
